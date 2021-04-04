@@ -4,34 +4,30 @@ import fs = require("fs");
 
 import { getDirtyFile } from "./utils";
 
-export class MintFormattingProvider
-  implements vscode.DocumentFormattingEditProvider {
+export class MintFormattingProvider implements vscode.DocumentFormattingEditProvider {
   public provideDocumentFormattingEdits(
-    document: vscode.TextDocument,
-    options: vscode.FormattingOptions,
-    token: vscode.CancellationToken
-  ): vscode.TextEdit[] | Thenable<vscode.TextEdit[]> {
+    document: vscode.TextDocument
+  ): Thenable<vscode.TextEdit[]> {
     return new Promise((resolve, reject) => {
-      let file = getDirtyFile(document);
+      const file = getDirtyFile(document);
 
-      let res = cp.spawnSync("mint", ["format", file], {
-        cwd: vscode.workspace.rootPath,
+      const res = cp.spawnSync("mint", ["format", file], {
+        cwd: vscode.workspace.workspaceFolders[0].uri.path,
       });
 
       if (res.status !== 0) {
         reject(res.error);
       } else {
-        if (!fs.existsSync(file)) {
+        if (!fs.existsSync(file) || document.fileName) {
           reject(file + " file not found");
         } else {
-          let content = fs.readFileSync(file, "utf-8");
-          let range = document.validateRange(
+          const range = document.validateRange(
             new vscode.Range(
               new vscode.Position(0, 0),
               new vscode.Position(1000000, 1000000)
             )
           );
-          resolve([vscode.TextEdit.replace(range, content)]);
+          resolve([vscode.TextEdit.replace(range, document.getText())]);
         }
       }
     });

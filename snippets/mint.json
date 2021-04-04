@@ -1,14 +1,8 @@
 {
   "Main component": {
     "prefix": "main",
-    "body": [
-      "component Main {",
-      "\tfun render : Html {",
-      "\t\t<$0/>",
-      "\t}",
-      "}"
-    ],
-    "description": "The component named Main is the one that get's rendered on the screen."
+    "body": ["component Main {", "\tfun render : Html {", "\t\t<$0/>", "\t}", "}"],
+    "description": "The component named Main is the one that gets rendered on the screen."
   },
   "Store": {
     "prefix": "store",
@@ -22,11 +16,7 @@
   },
   "Functions": {
     "prefix": "fun",
-    "body": [
-      "fun ${1:name}(${2:object} : ${3:String}) : ${4:Void} {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["fun ${1:name}(${2:object} : ${3:String}) : ${4:Void} {", "\t$0", "}"],
     "description": "Functions can be defined on modules, components, stores and providers."
   },
   "Next Call": {
@@ -41,41 +31,41 @@
   },
   "HTML Elements": {
     "prefix": "div",
-    "body": ["<${1:div}::${2:stylename}>", "\t$0", "</${1:div}>"],
+    "body": ["<div::${1:stylename}>", "\t$0", "</div>"],
     "description": "HTML elements can be written as in standard HTML."
   },
   "Span Element": {
     "prefix": "span",
-    "body": ["<${1:span}::${2:stylename}>", "\t$0", "</${1:span}>"],
+    "body": ["<span::${1:stylename}>", "\t$0", "</span>"],
     "description": "HTML elements can be written as in standard HTML."
   },
   "Paragraph Element": {
     "prefix": "p",
-    "body": ["<${1:p}::${2:stylename}>", "\t$0", "</${1:p}>"],
+    "body": ["<p::${1:stylename}>", "\t$0", "</p>"],
     "description": "HTML elements can be written as in standard HTML."
   },
   "Title Element": {
     "prefix": "h",
-    "body": ["<${1:h1}::${2:stylename}>", "\t$0", "</${1:h1}>"],
+    "body": ["<h1::${1:stylename}>", "\t$0", "</h1>"],
     "description": "HTML elements can be written as in standard HTML."
   },
   "Button Element": {
     "prefix": "button",
     "body": [
-      "<${1:button}::${2:stylename} ${3:disabled}={${4:disabled}}>",
+      "<button::${1:stylename} ${2:disabled}={${3:disabled}}>",
       "\t<{ \"${5:Text}\" }>",
-      "</${1:button}>"
+      "</button>"
     ],
     "description": "HTML elements can be written as in standard HTML."
   },
   "HTML Expressions": {
     "prefix": "exp",
-    "body": ["<{ \"${Message}\" }>"],
+    "body": ["<{ \"${0:Message}\" }>"],
     "description": "HTML Expressions allows inserting data into HTML elements or components."
   },
   "Attributes": {
     "prefix": "att",
-    "body": ["{${disabled}}"],
+    "body": ["{disabled}"],
     "description": "Attributes are either strings or expressions."
   },
   "Components": {
@@ -90,7 +80,7 @@
   },
   "Events": {
     "prefix": "event",
-    "body": ["${onEvent}={\\event : Html.Event => ${handler}()}"],
+    "body": ["${0:onEvent}={\\event : Html.Event => ${1:handler}()}"],
     "description": "All event handlers are functions, they take an event record and return Void."
   },
   "Connect": {
@@ -142,13 +132,7 @@
   },
   "Try": {
     "prefix": "try",
-    "body": [
-      "try {",
-      "\t$1",
-      "} catch ${2:Json}.Error => error {",
-      "\t$3",
-      "}"
-    ],
+    "body": ["try {", "\t$1", "} catch ${2:Json}.Error => error {", "\t$3", "}"],
     "description": "try is a control expression for handling synchronous computations that might fail, for example when you are trying to convert an untyped JavaScript object into a typed Record."
   },
   "Do": {

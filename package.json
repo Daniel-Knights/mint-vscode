@@ -35,7 +35,11 @@
   },
   "icon": "images/logo.png",
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Formatters",
+    "Language Packs",
+    "Linters",
+    "Snippets"
   ],
   "contributes": {
     "configuration": {
