@@ -1,3 +1,2 @@
-syntax highlighting
 completion providers
 hover providers

@@ -1,41 +1,43 @@
-import fs = require("fs");
-import path = require("path");
-import os = require("os");
-import vscode = require("vscode");
+import fs = require('fs')
+import path = require('path')
+import os = require('os')
+import vscode = require('vscode')
 
 /**
  * Returns temporary file path of edited document.
  */
 export function getDirtyFile(document: vscode.TextDocument): string {
-  const dirtyFilePath = path.normalize(path.join(os.tmpdir(), "vscodemintdirty.mint"));
-  fs.writeFileSync(dirtyFilePath, document.getText());
-  return dirtyFilePath;
+  const dirtyFilePath = path.normalize(path.join(os.tmpdir(), 'vscodemintdirty.mint'))
+
+  fs.writeFileSync(dirtyFilePath, document.getText())
+
+  return dirtyFilePath
 }
 
 export function createAndShowOutputWindow(): vscode.OutputChannel {
-  const channel = vscode.window.createOutputChannel("mint");
-  channel.show();
-  return channel;
+  const channel = vscode.window.createOutputChannel('mint')
+
+  channel.show()
+
+  return channel
 }
+
 /**
  * Run a mint subcommand as a VSCode task, ie `mint format`
  *
  * @param subcommand The mint subcommand to run, ie `format`
  * @param description The VSCode description to show, ie "Format all files"
  */
-export function runMintCommandAsTask(
-  subcommand: string,
-  description: string
-): Thenable<vscode.TaskExecution> {
+export function runMintCommandAsTask(subcommand: string, description: string): Thenable<vscode.TaskExecution> {
   return vscode.tasks.executeTask(
     new vscode.Task(
-      { command: "", type: "" },
+      { command: '', type: '' },
       vscode.TaskScope.Workspace,
       description,
-      "mint",
+      'mint',
       new vscode.ShellExecution(`mint ${subcommand}`)
     )
-  );
+  )
 }
 
 /**
@@ -45,6 +47,6 @@ export function runMintCommandAsTask(
  */
 export function promiseSeconds(seconds: number): Thenable<void> {
   return new Promise((res) => {
-    setTimeout(res, 1000 * seconds);
-  });
+    setTimeout(res, 1000 * seconds)
+  })
 }
