@@ -1,23 +1,23 @@
 import { runMintCommandAsTask, promiseSeconds } from './utils'
 import * as vscode from 'vscode'
 
-export function mintBuildCommand() {
+export function mintBuildCommand(): void {
   runMintCommandAsTask('build', 'Build production bundle')
 }
 
-export function mintCompileCommand() {
+export function mintCompileCommand(): void {
   runMintCommandAsTask('compile', 'Compile project into single JavaScript file')
 }
 
-export function mintDocsCommand() {
+export function mintDocsCommand(): void {
   runMintCommandAsTask('docs', 'Start documentation server')
 }
 
-export function mintFormatAllCommand() {
+export function mintFormatAllCommand(): void {
   runMintCommandAsTask('format', 'Format all files')
 }
 
-export async function mintInitCommand() {
+export async function mintInitCommand(): Promise<void> {
   const projectName = await vscode.window.showInputBox({
     prompt: 'Type the name of your project',
     placeHolder: 'mint-project',
@@ -39,22 +39,22 @@ export async function mintInitCommand() {
   await vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(newProjectRoot))
 }
 
-export function mintInstallCommand() {
+export function mintInstallCommand(): void {
   runMintCommandAsTask('install', 'Install dependencies')
 }
 
-export function mintCountLinesCommand() {
+export function mintCountLinesCommand(): void {
   runMintCommandAsTask('loc', 'Count lines of code')
 }
 
-export function mintStartCommand() {
+export function mintStartCommand(): void {
   runMintCommandAsTask('start', 'Start development server')
 }
 
-export function mintTestCommand() {
+export function mintTestCommand(): void {
   runMintCommandAsTask('test', 'Run tests')
 }
 
-export function mintVersionCommand() {
+export function mintVersionCommand(): void {
   runMintCommandAsTask('version', 'Show current version')
 }

@@ -3,3 +3,15 @@
 .gitignore
 vsc-extension-quickstart.md
 **/*.ts
+**/*.map
+images/**/*.svg
+out/test/**
+src/**
+typings/**
+test/**
+tsconfig.json
+.eslintrc
+.eslintignore
+**/*.txt
+**/*.yaml
+.prettierrc

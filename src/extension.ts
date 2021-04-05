@@ -6,7 +6,7 @@ import { MintFormattingProvider } from './formatter'
 
 let client: LanguageClient
 
-export async function activate(context: ExtensionContext): Promise<void> {
+export function activate(context: ExtensionContext): void {
   // Set context activated
   commands.executeCommand('setContext', 'mint:isActivated', true)
 
@@ -50,7 +50,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 }
 
-export async function deactivate(isRestart: boolean = false): Promise<void> {
+export function deactivate(): void {
   // Set context deactivated
   commands.executeCommand('setContext', 'mint:isActivated', false)
 
