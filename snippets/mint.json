@@ -51,7 +51,11 @@
   },
   "Button Element": {
     "prefix": "button",
-    "body": ["<button::${1:stylename} ${2:disabled}={${3:disabled}}>", "\t<{ \"${5:Text}\" }>", "</button>"],
+    "body": [
+      "<button::${1:stylename} ${2:disabled}={${3:disabled}}>",
+      "\t<{ \"${5:Text}\" }>",
+      "</button>"
+    ],
     "description": "HTML elements can be written as in standard HTML."
   },
   "HTML Expressions": {
@@ -96,7 +100,13 @@
   },
   "If": {
     "prefix": "if",
-    "body": ["if (${1:condition}) {", "\t${2:value}", "} else {", "\t${3:otherValue}", "}"],
+    "body": [
+      "if (${1:condition}) {",
+      "\t${2:value}",
+      "} else {",
+      "\t${3:otherValue}",
+      "}"
+    ],
     "description": "The if...else conditional expression can return two different values based on a condition."
   },
   "Case": {
@@ -112,7 +122,12 @@
   },
   "Record": {
     "prefix": "record",
-    "body": ["record ${1:User} {", "\t${2:name} : ${3:String},", "\t${4:email} : ${5:String}", "}"],
+    "body": [
+      "record ${1:User} {",
+      "\t${2:name} : ${3:String},",
+      "\t${4:email} : ${5:String}",
+      "}"
+    ],
     "description": "Records are object like data structures, that have a fix set of keys and values."
   },
   "Try": {

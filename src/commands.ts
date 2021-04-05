@@ -1,5 +1,5 @@
+import { window, commands, Uri } from 'vscode'
 import { runMintCommandAsTask, promiseSeconds } from './utils'
-import * as vscode from 'vscode'
 
 export function mintBuildCommand(): void {
   runMintCommandAsTask('build', 'Build production bundle')
@@ -18,12 +18,12 @@ export function mintFormatAllCommand(): void {
 }
 
 export async function mintInitCommand(): Promise<void> {
-  const projectName = await vscode.window.showInputBox({
+  const projectName = await window.showInputBox({
     prompt: 'Type the name of your project',
     placeHolder: 'mint-project',
   })
 
-  const folder = await vscode.window.showOpenDialog({
+  const folder = await window.showOpenDialog({
     canSelectFiles: false,
     canSelectFolders: true,
     canSelectMany: false,
@@ -36,7 +36,7 @@ export async function mintInitCommand(): Promise<void> {
 
   await promiseSeconds(2)
 
-  await vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(newProjectRoot))
+  await commands.executeCommand('vscode.openFolder', Uri.file(newProjectRoot))
 }
 
 export function mintInstallCommand(): void {

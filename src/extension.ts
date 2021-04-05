@@ -25,7 +25,9 @@ export function activate(context: ExtensionContext): void {
   commands.registerCommand('mint.test', cmd.mintTestCommand)
   commands.registerCommand('mint.version', cmd.mintVersionCommand)
 
-  const binaryLocation: string = workspace.getConfiguration('mint.languageServer').get('location')
+  const binaryLocation: string = workspace
+    .getConfiguration('mint.languageServer')
+    .get('location')
 
   if (!binaryLocation) return
 

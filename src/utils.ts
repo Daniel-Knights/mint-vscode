@@ -1,12 +1,21 @@
-import fs = require('fs')
-import path = require('path')
-import os = require('os')
-import vscode = require('vscode')
+import * as fs from 'fs'
+import * as path from 'path'
+import * as os from 'os'
+import {
+  window,
+  tasks,
+  Task,
+  ShellExecution,
+  TaskScope,
+  TextDocument,
+  OutputChannel,
+  TaskExecution,
+} from 'vscode'
 
 /**
  * Returns temporary file path of edited document.
  */
-export function getDirtyFile(document: vscode.TextDocument): string {
+export function getDirtyFile(document: TextDocument): string {
   const dirtyFilePath = path.normalize(path.join(os.tmpdir(), 'vscodemintdirty.mint'))
 
   fs.writeFileSync(dirtyFilePath, document.getText())
@@ -14,8 +23,8 @@ export function getDirtyFile(document: vscode.TextDocument): string {
   return dirtyFilePath
 }
 
-export function createAndShowOutputWindow(): vscode.OutputChannel {
-  const channel = vscode.window.createOutputChannel('mint')
+export function createAndShowOutputWindow(): OutputChannel {
+  const channel = window.createOutputChannel('mint')
 
   channel.show()
 
@@ -28,14 +37,17 @@ export function createAndShowOutputWindow(): vscode.OutputChannel {
  * @param subcommand The mint subcommand to run, ie `format`
  * @param description The VSCode description to show, ie "Format all files"
  */
-export function runMintCommandAsTask(subcommand: string, description: string): Thenable<vscode.TaskExecution> {
-  return vscode.tasks.executeTask(
-    new vscode.Task(
+export function runMintCommandAsTask(
+  subcommand: string,
+  description: string
+): Thenable<TaskExecution> {
+  return tasks.executeTask(
+    new Task(
       { command: '', type: '' },
-      vscode.TaskScope.Workspace,
+      TaskScope.Workspace,
       description,
       'mint',
-      new vscode.ShellExecution(`mint ${subcommand}`)
+      new ShellExecution(`mint ${subcommand}`)
     )
   )
 }

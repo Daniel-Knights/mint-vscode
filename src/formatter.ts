@@ -1,16 +1,23 @@
-import vscode = require('vscode')
-import cp = require('child_process')
-import fs = require('fs')
+import {
+  workspace,
+  Range,
+  Position,
+  TextEdit,
+  DocumentFormattingEditProvider,
+  TextDocument,
+} from 'vscode'
+import * as cp from 'child_process'
+import * as fs from 'fs'
 
 import { getDirtyFile } from './utils'
 
-export class MintFormattingProvider implements vscode.DocumentFormattingEditProvider {
-  public provideDocumentFormattingEdits(document: vscode.TextDocument): Thenable<vscode.TextEdit[]> {
+export class MintFormattingProvider implements DocumentFormattingEditProvider {
+  public provideDocumentFormattingEdits(document: TextDocument): Thenable<TextEdit[]> {
     return new Promise((resolve, reject) => {
       const file = getDirtyFile(document)
 
       const res = cp.spawnSync('mint', ['format', file], {
-        cwd: vscode.workspace.workspaceFolders[0].uri.path,
+        cwd: workspace.workspaceFolders[0].uri.path,
       })
 
       if (res.status !== 0) {
@@ -20,10 +27,10 @@ export class MintFormattingProvider implements vscode.DocumentFormattingEditProv
           reject(file + ' file not found')
         } else {
           const range = document.validateRange(
-            new vscode.Range(new vscode.Position(0, 0), new vscode.Position(1000000, 1000000))
+            new Range(new Position(0, 0), new Position(1000000, 1000000))
           )
 
-          resolve([vscode.TextEdit.replace(range, document.getText())])
+          resolve([TextEdit.replace(range, document.getText())])
         }
       }
     })
