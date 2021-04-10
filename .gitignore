@@ -3,3 +3,4 @@ node_modules
 out
 .prettierrc
 todo.txt
+.DS_Store
